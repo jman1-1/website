@@ -18,7 +18,6 @@
       <li><a href="#resume">Resume</a></li>
     </ul>
   </nav>
-
   <main>
     <section id="home">
       <div class="hero">
@@ -70,8 +69,21 @@
         }
       });
     }, { rootMargin: '-40% 0px -55% 0px' });
-
     sections.forEach(s => observer.observe(s));
+  </script>
+  <!--this is all music thatll probably get deleted-->
+  <audio id="music" preload="auto" loop>
+    <source src="assets/rock.mp3" type="audio/mp3" />
+  </audio>
+  <script>
+    const music = document.getElementById('music');
+    const startMusic = () => {
+      music.play();
+      document.removeEventListener('click', startMusic);
+      document.removeEventListener('keydown', startMusic);
+    };
+    document.addEventListener('click', startMusic);
+    document.addEventListener('keydown', startMusic);
   </script>
 </body>
 </html>
