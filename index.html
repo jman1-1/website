@@ -81,8 +81,12 @@
       music.play();
       document.removeEventListener('click', startMusic);
       document.removeEventListener('keydown', startMusic);
+      document.removeEventListener('focus', startMusic);
+      document.removeEventListener('scroll', startMusic);
     };
     document.addEventListener('click', startMusic);
+    document.addEventListener('scroll', startMusic);
+    document.addEventListener('focus', startMusic);
     document.addEventListener('keydown', startMusic);
   </script>
 </body>
