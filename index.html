@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jayden Ferrara</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav>
+    <a href="#home" class="logo">jf</a>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#resume">Resume</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="home">
+      <div class="hero">
+        <h1>Hello!</h1>
+        <p>More coming soon!</p>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="card">
+        <h3>Project Name</h3>
+        <p>A short description of what this project does and why it's interesting.</p>
+        <div class="meta"><a href="#">GitHub &rarr;</a></div>
+      </div>
+    </section>
+
+    <section id="resume">
+      <h2>Experience</h2>
+      <div class="card">
+        <h3>Job Title &mdash; Company</h3>
+        <p>What you did here.</p>
+        <div class="meta">2024 &ndash; Present</div>
+      </div>
+
+      <h2 style="margin-top: 3rem;">Education</h2>
+      <div class="card">
+        <h3>Degree &mdash; School</h3>
+        <p>Field of study.</p>
+        <div class="meta">2020 &ndash; 2024</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2026 jaydenferrara.com
+  </footer>
+
+  <script>
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('nav ul a');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => link.classList.remove('active'));
+          const active = document.querySelector(`nav ul a[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+
+    sections.forEach(s => observer.observe(s));
+  </script>
+</body>
+</html>
