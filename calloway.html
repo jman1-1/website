@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="style.css" />
   <style>
     body { margin: 0; overflow: hidden; background: #000; }
-    #dvd-img { position: fixed; width: 200px; }
+    #dvd-img { position: fixed; width: 400px; }
   </style>
 </head>
 <body>
@@ -31,7 +31,7 @@
     const img = document.getElementById('dvd-img');
     let x = Math.random() * (window.innerWidth - img.offsetWidth);
     let y = Math.random() * (window.innerHeight - img.offsetHeight);
-    let dx = 2, dy = 2;
+    let dx = 1, dy = 1;
 
     function bounce() {
       const w = window.innerWidth;
