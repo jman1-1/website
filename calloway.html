@@ -15,13 +15,21 @@
   </style>
 </head>
 <body>
-  <img id="dvd-img" src="assets/calloway/temp.jpg">
+  <img id="dvd-img">
   <img id="fire" src="assets/calloway/fire.gif">
-  <audio id="music" preload="auto" loop>
-    <source src="assets/calloway/scary.mp3" type="audio/mp3" />
-  </audio>
+  <audio id="music" preload="auto" loop></audio>
   <script>
+    const images = ['assets/calloway/temp.jpg', 'assets/calloway/BEARidle.webp'];
+    const tracks = ['assets/calloway/scary.mp3', 'assets/calloway/scary2.mp3'];
+
+    const img = document.getElementById('dvd-img');
     const music = document.getElementById('music');
+
+    img.src = images[Math.floor(Math.random() * images.length)];
+    const src = document.createElement('source');
+    src.src = tracks[Math.floor(Math.random() * tracks.length)];
+    src.type = 'audio/mp3';
+    music.appendChild(src);
     const startMusic = () => {
       music.play();
        document.removeEventListener('pointerdown', startMusic);
@@ -32,7 +40,6 @@
     document.addEventListener('keydown', startMusic);
     document.addEventListener('touchstart', startMusic);
 
-    const img = document.getElementById('dvd-img');
     let x = Math.random() * (window.innerWidth - img.offsetWidth);
     let y = Math.random() * (window.innerHeight - img.offsetHeight);
     let dx = 1, dy = 1;
