@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calloyway's Revenge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <img src="assets/calloway/temp.jpg">
+  <audio id="music" preload="auto" loop>
+    <source src="assets/calloway/scary.mp3" type="audio/mp3" />
+  </audio>
+  <script>
+    const music = document.getElementById('music');
+    const startMusic = () => {
+      music.play();
+      document.removeEventListener('click', startMusic);
+      document.removeEventListener('keydown', startMusic);
+    };
+    document.addEventListener('click', startMusic);
+    document.addEventListener('keydown', startMusic);
+  </script>
+</body>
+</html>
