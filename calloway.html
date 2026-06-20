@@ -10,11 +10,13 @@
   <link rel="stylesheet" href="style.css" />
   <style>
     body { margin: 0; overflow: hidden; background: #000; }
-    #dvd-img { position: fixed; width: 400px; }
+    #dvd-img { position: fixed; width: 800px; }
+    #fire { position: fixed; bottom: 0; left: 0; width: 100%; display: block; }
   </style>
 </head>
 <body>
   <img id="dvd-img" src="assets/calloway/temp.jpg">
+  <img id="fire" src="assets/calloway/fire.gif">
   <audio id="music" preload="auto" loop>
     <source src="assets/calloway/scary.mp3" type="audio/mp3" />
   </audio>
@@ -22,11 +24,13 @@
     const music = document.getElementById('music');
     const startMusic = () => {
       music.play();
-      document.removeEventListener('click', startMusic);
+       document.removeEventListener('pointerdown', startMusic);
       document.removeEventListener('keydown', startMusic);
+      document.removeEventListener('touchstart', startMusic);
     };
-    document.addEventListener('click', startMusic);
+    document.addEventListener('pointerdown', startMusic);
     document.addEventListener('keydown', startMusic);
+    document.addEventListener('touchstart', startMusic);
 
     const img = document.getElementById('dvd-img');
     let x = Math.random() * (window.innerWidth - img.offsetWidth);
