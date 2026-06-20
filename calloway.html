@@ -9,9 +9,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <style>
-    body { margin: 0; overflow: hidden; background: #000; }
+    body { margin: 0; overflow: hidden; background: linear-gradient(to bottom, #000 0%, #ff4500 100%); min-height: 100vh; }
     #dvd-img { position: fixed; width: 800px; }
-    #fire { position: fixed; bottom: 0; left: 0; width: 100%; display: block; }
+    #fire { position: fixed; bottom: -60px; left: 0; width: 100%; display: block; }
   </style>
 </head>
 <body>
@@ -26,6 +26,7 @@
     const music = document.getElementById('music');
 
     img.src = images[Math.floor(Math.random() * images.length)];
+    img.style.width = img.src.includes('BEARidle') ? '400px' : '800px';
     const src = document.createElement('source');
     src.src = tracks[Math.floor(Math.random() * tracks.length)];
     src.type = 'audio/mp3';
