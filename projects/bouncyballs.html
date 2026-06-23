@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ball Physics Sim | Jayden Ferrara</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    body { max-width: 700px; margin: 0 auto; padding: 3.5rem 2rem; }
+  </style>
+</head>
+<body>
+  <a href="../" class="detail-back">← back</a>
+
+  <h1 class="page-headline">2D Ball Physics Simulation</h1>
+
+  <div class="detail-meta">
+    <span>2026</span>
+    <div class="tag-list">
+      <span class="tag">c++</span>
+      <span class="tag">opengl</span>
+      <span class="tag">glfw</span>
+      <span class="tag">physics</span>
+    </div>
+  </div>
+
+  <div class="detail-body">
+    <p>A 2D physics sandbox written in C++ using OpenGL's immediate-mode API and GLFW for window and input management, built with CMake and targeting Linux/X11. The simulation renders colored circles and rectangular blocks inside a resizable window with a physics engine written from scratch.</p>
+
+    <p>Each ball carries position, velocity, and mass. Per-frame dynamics apply gravity, air drag, and a coefficient of restitution and friction that govern how balls bounce and slide on impact. Ball-to-ball collisions use an impulse-based formula with midpoint separation to prevent overlap. Ball-to-block collisions reflect velocity off whichever face is struck. To handle many-body pileups more stably, the engine runs 25 collision-resolution passes per frame.</p>
+
+    <p>A fun quirk of the implementation: physically moving or shaking the OS window imparts impulse to every ball in the scene, so you can fling them around by dragging the window. Spawning is fully interactive, with left-click launches a ball with velocity matching your mouse swipe, H drops a stationary ball at the cursor, G drops one moving left, and X places a static rectangular block. All colors are randomized on spawn.</p>
+  </div>
+
+  <img class="project-screenshot" src="/assets/main/projects/bouncyballs.gif" alt="Ball physics simulation demo" />
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fuzzing as a Vulnerability Discovery Technique | Jayden Ferrara</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    body { max-width: 700px; margin: 0 auto; padding: 3.5rem 2rem; }
+  </style>
+</head>
+<body>
+  <a href="../" class="detail-back">← back</a>
+
+  <h1 class="page-headline">Fuzzing as a Vulnerability Discovery Technique</h1>
+
+  <div class="detail-meta">
+    <span>2026</span>
+    <div class="tag-list">
+      <span class="tag">fuzzing</span>
+      <span class="tag">methodology</span>
+      <span class="tag">security</span>
+    </div>
+  </div>
+
+  <div class="detail-body">
+    <p>Manual vulnerability research is thorough but slow. You read code and try to build a mental model of how data flows through a system, and then form hypotheses about where that model might break. Fuzzing flips the process: instead of reasoning toward a specific bug, you throw enormous volumes of malformed, boundary-pushing, and outright invalid input at a target and watch what breaks. The two approaches are not mutually exclusive; the best results usually come from using each to inform the other.</p>
+
+    <p>I have approached fuzzing from two angles. The first is applying existing fuzzing tooling to open-source codebases on GitHub. This works well against targets with clear input surfaces: parsers, protocol implementations, file format handlers. A fuzzer running against a parser will reliably surface integer overflows, out-of-bounds reads, and unexpected crashes in code paths that no developer thought to manually test, especially in edge cases involving malformed or oversized input. The iteration speed is high: you can cover thousands of inputs per second and triage the crashes afterward rather than hunting for them one at a time.</p>
+
+    <p>The second angle is building a custom fuzzer for a specific target environment. BloxBreaker, a Lua-based fuzzer I wrote to run inside the Roblox engine, is an example of this. Generic fuzzers cannot operate inside a proprietary runtime with its own type system and API surface, so the fuzzer has to be domain-aware. It downloads the engine's full API reference at runtime and iterates over every exposed class, property, and function, injecting hostile values tailored to each type: NaN and infinity for numbers, null-padded strings near memory allocation limits, and malformed versions of engine-specific types like Vector3 and CFrame. The custom approach trades breadth for precision: you cover less ground than a general-purpose tool, but every test case is actually meaningful to the target.</p>
+
+    <p>The consistent lesson across both approaches is that fuzzing surfaces what code does under pressure, not what it was intended to do. Crashes and unexpected returns are not bugs by themselves; they require a researcher to assess exploitability. But as a first pass over an unfamiliar attack surface, few techniques produce as much signal with as little manual effort.</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aseprite Lua Identity Spoofing | Jayden Ferrara</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    body { max-width: 700px; margin: 0 auto; padding: 3.5rem 2rem; }
+  </style>
+</head>
+<body>
+  <a href="../" class="detail-back">← back</a>
+
+  <h1 class="page-headline">How a Lua Identity Spoofing Bug in Aseprite Earned a $1,000 Bounty</h1>
+
+  <div class="detail-meta">
+    <span>2026</span>
+    <div class="tag-list">
+      <span class="tag">Auth Bypass</span>
+      <span class="tag">lua</span>
+      <span class="tag">bug bounty</span>
+    </div>
+  </div>
+
+  <div class="detail-body">
+    <p>While auditing Aseprite's Lua plugin system, I discovered that script identity was derived from a mutable global function. That small design decision allowed a malicious plugin to spoof its identity and inherit privileged permissions from another script.</p>
+
+    <h2>What is Aseprite?</h2>
+    <p>Aseprite is a popular pixel-art and sprite animation editor used to create 2D graphics and animations for games and digital art. It is entirely open-source, with its GitHub repository featuring over 35,000 stars.<sup>[2]</sup> Aseprite is distributed on platforms such as Steam, where it holds over 24,000 positive reviews and maintains around 6,000 active users at any given time.<sup>[1]</sup></p>
+
+    <h2>Initial Analysis</h2>
+    <p>As I was investigating whether Aseprite would be a good candidate for analysis, I learned about one of its key features: the plugin system. Aseprite supports extensibility through a built-in Lua scripting system, allowing users to install community-made scripts and plugins to automate workflows, add tools, and expand existing functionality.</p>
+    <p>Through experience, I had come to recognize that anything involving UGC (User Generated Content) in an application was always a red flag, since the greatest failure point in any piece of software is often user trust. If a user could be tricked into compromising themselves through a plugin exploiting a vulnerability, it would dramatically expand the attack surface for social engineering-based compromise. The question was: how could this be achieved?</p>
+
+    <h2>Aseprite's Plugin System</h2>
+    <p>Aseprite's Lua scripting system offers developer access to many OS-level functions, such as reading and writing files. For a plugin to access these functions, the user must grant explicit permission via a prompt that appears on screen during use. To facilitate ease of use, Aseprite allows a user to permanently allow a specific plugin to access these high-level functions without prompting again.</p>
+    <p>When determining whether a plugin has already been granted permanent allowance, Aseprite runs a check via <code>get_script_filename</code> to see if any permissions have been persisted for that plugin. That is where the trust assumption became clear: script identity was being derived from a Lua global function exposed to the same execution environment as untrusted plugins.</p>
+
+    <h2>The Vulnerability</h2>
+    <p><code>get_script_filename</code> derives script identity via <code>debug.getinfo().source</code> from the Lua global environment:</p>
+
+<pre>// Get script name
+lua_getglobal(L, "debug");
+lua_getfield(L, -1, "getinfo");
+lua_remove(L, -2);
+lua_pushinteger(L, stackLevel);
+lua_pushstring(L, "S");
+lua_call(L, 2, 1);
+lua_getfield(L, -1, "source");
+const char* source = lua_tostring(L, -1);</pre>
+
+    <p>The permission system implicitly trusts <code>debug.getinfo()</code> as an immutable source of script identity. However, since it is mutable from the Lua global environment, the question became: what would happen if a malicious plugin overwrote <code>debug.getinfo().source</code> before <code>get_script_filename</code> was called? Could a plugin report itself as another?</p>
+
+    <h2>Proof of Concept</h2>
+    <p>To verify this, I created two plugins: <code>Good.lua</code> and <code>Bad.lua</code>.</p>
+    <p><strong>Good.lua</strong> — legitimately obtains and persists a permission:</p>
+
+<pre>-- Purpose: legitimately obtain and persist a permission
+
+local path = app.fs.userConfigPath .. "/legitWrite.txt"
+local f = io.open(path, "w")
+f:write("hello\n")
+f:close()
+app.alert("Good script ran, write permissions granted.")</pre>
+
+    <p><code>Good.lua</code> served as a template plugin to grant persisted permissions to, since <code>io.open</code> prompts Aseprite to ask for explicit permissions.</p>
+
+    <p><strong>Bad.lua</strong> — spoofs identity by overwriting <code>debug.getinfo</code>:</p>
+
+<pre>local real_getinfo = debug.getinfo
+
+debug.getinfo = function(thread_or_level, what)
+  local info = real_getinfo(thread_or_level, what) or {}
+  -- ADJUST TO WHEREVER YOUR good.lua IS
+  info.source = "@/home/zeropathresearch/.config/aseprite/scripts/good.lua"
+  return info
+end
+
+local path = app.fs.userConfigPath .. "/badWrite.txt"
+
+local f = io.open(path, "w")
+f:write("Bad script wrote this without permission!\n")
+f:close()
+
+app.alert("Bad script executed")</pre>
+
+    <p>The attack chain breaks down as follows:</p>
+    <ol>
+      <li>Run <code>Good.lua</code> and grant persistent permission.</li>
+      <li>Run <code>Bad.lua</code>, which overrides <code>debug.getinfo</code>.</li>
+      <li><code>Bad.lua</code> spoofs its source to match <code>Good.lua</code>.</li>
+      <li>The permission check succeeds against the spoofed identity.</li>
+      <li><code>io.open</code> executes silently with no user prompt.</li>
+    </ol>
+    <p>Permission checks are performed at runtime immediately before privileged IO operations, so the overwrite of <code>debug.getinfo</code> executes before hitting <code>io.open</code>. Once overwritten, Aseprite skips the security prompt entirely, believing the running plugin is <code>Good.lua</code> and reusing its persisted permissions.</p>
+
+    <h2>Impact</h2>
+    <p>This vulnerability allows a malicious plugin to inherit previously granted high-privilege permissions from another trusted script. Because Aseprite derives script identity from the mutable global <code>debug.getinfo()</code>, a plugin can spoof its source before a permission check occurs.</p>
+    <p>As a result, a user who permanently grants file access to one plugin can unknowingly grant the same access to a different malicious plugin, without any additional prompts. Since Aseprite's Lua environment exposes file system and OS-level capabilities, this could enable silent file modification, data exfiltration, or arbitrary command execution depending on configuration.</p>
+
+    <h2>Lessons Learned</h2>
+    <p>At its core, this is a trust boundary failure stemming from authorization decisions that relied on attacker-controlled identity metadata. The identity used for authorization must be immutable. If script identity can be influenced within the same execution context, it cannot be trusted.</p>
+    <p>Shared scripting environments like Aseprite's plugin ecosystem carry inherently increased risk. Mutable globals become potential security primitives. Persisted permissions require strong binding, and filename-based identity is insufficient when that value can be spoofed.</p>
+
+    <h2>Aftermath</h2>
+    <p>Once I validated the vulnerability, I contacted the Aseprite team without delay. They were receptive to the report, and the finding was rewarded with a $1,000 bounty. The vulnerability has since been fixed with the release of Aseprite v1.3.17.</p>
+
+    <h2>Conclusions</h2>
+    <p>The vulnerability was ultimately about misplaced trust in a mutable runtime primitive. This audit reinforced how seemingly minor environmental assumptions can create serious security consequences when exposed to untrusted execution contexts.</p>
+
+    <div class="detail-citations">
+      <p>[1] Aseprite Steam Analytics, steamdb.info/app/431730/. Accessed 23 Jan. 2026.</p>
+      <p>[2] "Aseprite: Animated Sprite Editor &amp; Pixel Art Tool." GitHub, github.com/aseprite/aseprite. Accessed 23 Jan. 2026.</p>
+    </div>
+  </div>
+</body>
+</html>

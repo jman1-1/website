@@ -3,87 +3,328 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jayden's Dashboard</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <title>Jayden Ferrara</title>
+  <meta name="description" content="Security researcher and software engineer. M.S. Cybersecurity candidate at NYIT, bug bounty hunter with 11 accepted reports, and builder of security tools and applications." />
+  <link rel="icon" href="favicon.ico" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <nav>
-    <a href="#home" class="logo">jf</a>
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#resume">Resume</a></li>
-    </ul>
-  </nav>
-  <main>
-    <section id="home">
-      <div class="hero">
-        <h1>Hello!</h1>
-        <p>More coming soon!</p>
-      </div>
-    </section>
 
-    <section id="projects">
-      <h2>Projects</h2>
-      <div class="card">
-        <h3>Project Name</h3>
-        <p>A short description of what this project does and why it's interesting.</p>
-        <div class="meta"><a href="#">GitHub &rarr;</a></div>
-      </div>
-    </section>
-
-    <section id="resume">
-      <h2>Experience</h2>
-      <div class="card">
-        <h3>Job Title &mdash; Company</h3>
-        <p>What you did here.</p>
-        <div class="meta">2024 &ndash; Present</div>
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <div class="sidebar-identity">
+        <p class="sidebar-name">Jayden Ferrara</p>
+        <p class="sidebar-role">security researcher · software engineer</p>
+        <span class="badge-open">open to work</span>
       </div>
 
-      <h2 style="margin-top: 3rem;">Education</h2>
-      <div class="card">
-        <h3>Degree &mdash; School</h3>
-        <p>Field of study.</p>
-        <div class="meta">2020 &ndash; 2024</div>
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active" data-view="overview">
+          <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/>
+            <rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/>
+          </svg>
+          Overview
+        </a>
+        <a href="#" class="nav-item" data-view="about">
+          <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="8" cy="5" r="3"/><path d="M2,14 C2,11 5,9 8,9 C11,9 14,11 14,14"/>
+          </svg>
+          About
+        </a>
+        <a href="#" class="nav-item" data-view="projects">
+          <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="5,4 1,8 5,12"/><polyline points="11,4 15,8 11,12"/>
+          </svg>
+          Projects
+        </a>
+        <a href="#" class="nav-item" data-view="writeups">
+          <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12,1 L4,1 C3.45,1 3,1.45 3,2 L3,14 C3,14.55 3.45,15 4,15 L12,15 C12.55,15 13,14.55 13,14 L13,2 C13,1.45 12.55,1 12,1 Z"/>
+            <line x1="5.5" y1="5" x2="10.5" y2="5"/><line x1="5.5" y1="7.5" x2="10.5" y2="7.5"/><line x1="5.5" y1="10" x2="8" y2="10"/>
+          </svg>
+          Writeups
+        </a>
+        <a href="#" class="nav-item" data-view="methods">
+          <svg class="nav-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="6.5" cy="6.5" r="4.5"/><line x1="10" y1="10" x2="14" y2="14"/>
+          </svg>
+          Methods
+        </a>
+      </nav>
+    </div>
+
+    <div class="sidebar-contact">
+      <a href="mailto:ferrarajayden@outlook.com" class="contact-link">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="1" y="3" width="14" height="10" rx="1"/><polyline points="1,4 8,9 15,4"/>
+        </svg>
+        email
+      </a>
+      <a href="https://linkedin.com/in/jayden-ferrara" target="_blank" rel="noopener" class="contact-link">
+        <svg viewBox="0 0 16 16" fill="currentColor">
+          <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+        </svg>
+        linkedin
+      </a>
+      <a href="/assets/main/resume.pdf" download class="contact-link">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="8" y1="1" x2="8" y2="11"/><polyline points="4,7 8,11 12,7"/><line x1="2" y1="14" x2="14" y2="14"/>
+        </svg>
+        resume
+      </a>
+    </div>
+  </aside>
+
+  <header class="mobile-header">
+    <p class="mobile-name">Jayden Ferrara</p>
+    <nav class="mobile-nav">
+      <a href="#" class="mobile-nav-item active" data-view="overview">Overview</a>
+      <a href="#" class="mobile-nav-item" data-view="about">About</a>
+      <a href="#" class="mobile-nav-item" data-view="projects">Projects</a>
+      <a href="#" class="mobile-nav-item" data-view="writeups">Writeups</a>
+      <a href="#" class="mobile-nav-item" data-view="methods">Methods</a>
+    </nav>
+  </header>
+
+  <main class="content">
+
+    <div id="view-overview" class="view active">
+      <h1 class="page-headline">Security researcher &amp;<br>software engineer.</h1>
+      <p class="page-bio">M.S. Cybersecurity candidate at NYIT (exp. 2027). Bug bounty hunter on HackerOne with 11 accepted reports across 5 programs. Based in Kings Park, NY.</p>
+
+      <div class="stat-row">
+        <div class="stat-card">
+          <span class="stat-value">12+</span>
+          <span class="stat-label">Vulnerability reports</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">5+</span>
+          <span class="stat-label">programs and codebases</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">2027</span>
+          <span class="stat-label">M.S. expected</span>
+        </div>
       </div>
-    </section>
+
+      <div class="section-label">FEATURED PROJECTS</div>
+      <div class="card-list">
+        <div class="project-card">
+          <div class="project-header">
+            <a href="projects/vantage.html" class="project-name">Vantage</a>
+            <span class="project-year">2026</span>
+          </div>
+          <p class="project-desc">Runtime instrumentation and scripting platform, attaches to a live process and exposes a Lua environment over it with an immediate-mode GUI.</p>
+          <div class="tag-list">
+            <span class="tag">C</span>
+            <span class="tag">lua</span>
+            <span class="tag">windows api</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-header">
+            <a href="projects/yoobi.html" class="project-name">YOOBI</a>
+            <span class="project-year">2025</span>
+          </div>
+          <p class="project-desc">Task and habit management app with a social layer, gamification, cosmetics marketplace, medication tracking, and a recurring mascot, built with React Native, Expo, and Supabase.</p>
+          <div class="tag-list">
+            <span class="tag">react native</span>
+            <span class="tag">expo</span>
+            <span class="tag">typescript</span>
+            <span class="tag">supabase</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-header">
+            <a href="projects/bloxbreaker.html" class="project-name">BloxBreaker</a>
+            <span class="project-year">2025</span>
+          </div>
+          <p class="project-desc">Automated Roblox API fuzzer that downloads the full engine reference at runtime and fires hostile inputs (NaN, oversized strings, malformed data types) at every property and function to surface crashes and edge cases.</p>
+          <div class="tag-list">
+            <span class="tag">lua</span>
+            <span class="tag">fuzzing</span>
+            <span class="tag">roblox</span>
+            <span class="tag">security</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="view-methods" class="view">
+      <div class="section-label">ARTICLES</div>
+      <div class="card-list">
+        <div class="project-card">
+          <div class="project-header">
+            <a href="research/fuzzing.html" class="project-name">Fuzzing as a vulnerability discovery technique</a>
+            <span class="project-year">2026</span>
+          </div>
+          <p class="project-desc">How automated input fuzzing surfaces crashes and unexpected behavior across both open-source codebases and custom runtime environments.</p>
+          <div class="tag-list">
+            <span class="tag">fuzzing</span>
+            <span class="tag">methodology</span>
+            <span class="tag">security</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="view-projects" class="view">
+      <div class="section-label">PROJECTS</div>
+      <div class="card-list">
+        <div class="project-card">
+          <div class="project-header">
+            <a href="projects/vantage.html" class="project-name">Vantage</a>
+            <span class="project-year">2026</span>
+          </div>
+          <p class="project-desc">Runtime instrumentation and scripting platform, attaches to a live process, exposes a Lua scripting environment over it, and ships an immediate-mode GUI with a script editor and offset diffing view.</p>
+          <div class="tag-list">
+            <span class="tag">C</span>
+            <span class="tag">lua</span>
+            <span class="tag">windows api</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-header">
+            <a href="projects/conduit.html" class="project-name">Conduit</a>
+            <span class="project-year">2023</span>
+          </div>
+          <p class="project-desc">Minecraft Forge mod that intercepts, inspects, and replays outgoing serverbound packets via a Mixin hook into the network layer.</p>
+          <div class="tag-list">
+            <span class="tag">java</span>
+            <span class="tag">packets</span>
+            <span class="tag">forge</span>
+            <span class="tag">minecraft</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-header">
+            <a href="projects/bouncyballs.html" class="project-name">ball physics sim</a>
+            <span class="project-year">2026</span>
+          </div>
+          <p class="project-desc">2D physics sandbox with impulse-based ball collisions, rigid blocks, per-frame gravity and drag, and interactive spawning, written in C++ with OpenGL and GLFW.</p>
+          <div class="tag-list">
+            <span class="tag">c++</span>
+            <span class="tag">opengl</span>
+            <span class="tag">glfw</span>
+            <span class="tag">physics</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-header">
+            <a href="projects/yoobi.html" class="project-name">YOOBI</a>
+            <span class="project-year">2025</span>
+          </div>
+          <p class="project-desc">Task and habit management app with a social layer, gamification, cosmetics marketplace, medication tracking, and a recurring mascot, built with React Native, Expo, and Supabase.</p>
+          <div class="tag-list">
+            <span class="tag">react native</span>
+            <span class="tag">expo</span>
+            <span class="tag">typescript</span>
+            <span class="tag">supabase</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-header">
+            <a href="projects/portfolio.html" class="project-name">this site!</a>
+            <span class="project-year">2026</span>
+          </div>
+          <p class="project-desc">Static portfolio with no frameworks or build step. Navigation is SPA-style via view toggling, and detail pages load inline by fetching and parsing the target HTML so the sidebar never leaves.</p>
+          <div class="tag-list">
+            <span class="tag">html</span>
+            <span class="tag">css</span>
+            <span class="tag">js</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-header">
+            <a href="projects/bloxbreaker.html" class="project-name">BloxBreaker</a>
+            <span class="project-year">2025</span>
+          </div>
+          <p class="project-desc">Automated Roblox API fuzzer that downloads the full engine reference at runtime and fires hostile inputs (NaN, oversized strings, malformed data types) at every property and function to surface crashes and edge cases.</p>
+          <div class="tag-list">
+            <span class="tag">lua</span>
+            <span class="tag">fuzzing</span>
+            <span class="tag">roblox</span>
+            <span class="tag">security</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="view-writeups" class="view">
+      <div class="section-label">DISCLAIMER</div>
+      <p class="writeup-disclaimer">As much as I would like to document every vulnerability I have reported, many companies request that findings remain private. Any writeup published here was performed and shared with explicit permission from the affected developers.</p>
+      <div class="section-label">WRITEUPS</div>
+      <div class="card-list">
+        <div class="project-card">
+          <div class="project-header">
+            <a href="writeups/aseprite-lua-spoofing.html" class="project-name">Lua identity spoofing in Aseprite</a>
+            <span class="project-year">2026</span>
+          </div>
+          <p class="project-desc">A malicious Aseprite plugin could overwrite debug.getinfo() to spoof its source path and silently inherit another plugin's persisted file-system permissions.</p>
+          <div class="tag-list">
+            <span class="tag">Auth Bypass</span>
+            <span class="tag">lua</span>
+            <span class="tag">bug bounty</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="view-detail" class="view"></div>
+
+    <div id="view-about" class="view">
+      <h1 class="page-headline">About</h1>
+      <p class="page-bio">I'm Jayden Ferrara, a security researcher and software engineer based in Kings Park, NY. I got my B.S. in Computer Science with a concentration in network security, and I'm currently working toward my M.S. in Cybersecurity at NYIT. I've been building things and breaking them long before I had the credentials to back it up.</p>
+      <p class="page-bio">On the security side, I hunt bugs on HackerOne with 12+ accepted reports, completed a security research internship at ZeroPath, and published a finding on Aseprite's Lua plugin system that earned a $1,000 bounty. On the engineering side, I build whatever I find interesting: a Windows memory editor with an embedded Lua scripting engine, a packet inspection framework for Minecraft, a cross-platform task management app, and a Roblox API fuzzer.</p>
+      <p class="page-bio">I also teach coding at theCoderSchool. Explaining hard things simply has a way of sharpening your own understanding, and I've found that it carries over into everything else. I'm currently looking for entry-level roles in cybersecurity or software engineering.</p>
+
+      <div class="section-label">EDUCATION</div>
+      <div class="card-list">
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-name no-link">NYIT · M.S. Cybersecurity</span>
+            <span class="project-year">2026–2027</span>
+          </div>
+          <p class="project-desc">Graduate program focused on network security, penetration testing, and secure software development.</p>
+        </div>
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-name no-link">NYIT · B.S. Computer Science</span>
+            <span class="project-year">2023–2026</span>
+          </div>
+          <p class="project-desc">Network security concentration. GPA 3.9, Summa Cum Laude.</p>
+        </div>
+      </div>
+
+      <div class="section-label">EXPERIENCE</div>
+      <div class="card-list">
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-name no-link">ZeroPath · Security Research Intern</span>
+            <span class="project-year">Nov 2025–Feb 2026</span>
+          </div>
+          <p class="project-desc">Performed deep static code analysis on production-grade distributed systems written in Go, Rust, C/C++, and TypeScript, surfacing high-impact SSRF, DoS, and memory safety vulnerabilities. Developed end-to-end remote PoCs in Linux environments using Docker and Kubernetes to demonstrate real-world exploitability. Authored detailed vulnerability writeups translating technical findings into actionable remediation guidance for engineering and security stakeholders.</p>
+        </div>
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-name no-link">theCoderSchool · Code Coach</span>
+            <span class="project-year">2024–present</span>
+          </div>
+          <p class="project-desc">Teaching children ages 6–17 programming fundamentals across multiple languages, adapting lessons to each student's skill level and learning pace.</p>
+        </div>
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-name no-link">HackerOne · Independent Security Researcher</span>
+            <span class="project-year">2021–present</span>
+          </div>
+          <p class="project-desc">Submitted 11 valid vulnerability reports across 5 programs with confirmed triage and bounty compensation. Findings span web application vulnerabilities including XSS, IDOR, SSRF, and authentication bypass.</p>
+        </div>
+      </div>
+    </div>
+
   </main>
 
-  <footer>
-    &copy; 2026 jaydenferrara.com
-  </footer>
-
-  <script>
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('nav ul a');
-
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          navLinks.forEach(link => link.classList.remove('active'));
-          const active = document.querySelector(`nav ul a[href="#${entry.target.id}"]`);
-          if (active) active.classList.add('active');
-        }
-      });
-    }, { rootMargin: '-40% 0px -55% 0px' });
-    sections.forEach(s => observer.observe(s));
-  </script>
-  <!--this is all music thatll probably get deleted-->
-  <audio id="music" preload="auto" loop>
-    <source src="assets/calloway/rock.mp3" type="audio/mp3" />
-  </audio>
-  <script>
-    const music = document.getElementById('music');
-    const startMusic = () => {
-      music.play();
-      document.removeEventListener('click', startMusic);
-      document.removeEventListener('keydown', startMusic);
-    };
-    document.addEventListener('click', startMusic);
-    document.addEventListener('keydown', startMusic);
-  </script>
+  <script src="main.js"></script>
 </body>
 </html>

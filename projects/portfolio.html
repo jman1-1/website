@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio | Jayden Ferrara</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    body { max-width: 700px; margin: 0 auto; padding: 3.5rem 2rem; }
+  </style>
+</head>
+<body>
+  <a href="../" class="detail-back">← back</a>
+
+  <h1 class="page-headline">This Site</h1>
+
+  <div class="detail-meta">
+    <span>2026</span>
+    <div class="tag-list">
+      <span class="tag">html</span>
+      <span class="tag">css</span>
+      <span class="tag">js</span>
+    </div>
+  </div>
+
+  <div class="detail-body">
+    <p>A fully static portfolio built with vanilla HTML, CSS, and JavaScript, with no frameworks, no build step, and no dependencies. The layout uses a fixed sidebar for navigation and a single content area where all views live as hidden divs, toggled by a small JS router that maps nav clicks to view IDs. The result loads instantly and works without any tooling.</p>
+
+    <p>The more interesting piece is how detail pages work. Rather than navigating to a separate HTML file and losing the sidebar, clicking a project card intercepts the link, fetches the target page in the background, and uses DOMParser to extract just the relevant content blocks before injecting them into a shared detail view. The standalone HTML files still exist and work as direct URLs, so the same content serves both the SPA context and any direct link without duplication.</p>
+
+    <p>The full source is available on <a href="https://github.com/jman1-1/website" target="_blank" rel="noopener">GitHub</a>.</p>
+  </div>
+</body>
+</html>

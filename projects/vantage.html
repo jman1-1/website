@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vantage | Jayden Ferrara</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    body { max-width: 700px; margin: 0 auto; padding: 3.5rem 2rem; }
+  </style>
+</head>
+<body>
+  <a href="../" class="detail-back">← back</a>
+
+  <h1 class="page-headline">Vantage</h1>
+
+  <div class="detail-meta">
+    <span>2026</span>
+    <div class="tag-list">
+      <span class="tag">C</span>
+      <span class="tag">lua</span>
+      <span class="tag">windows api</span>
+    </div>
+  </div>
+
+  <div class="detail-body">
+    <p>Runtime instrumentation and scripting platform that attaches to a live external process and exposes a full scripting environment over it. Built in C11 with Lua 5.4, an SDL2/Nuklear immediate-mode GUI, and the Windows API.</p>
+
+    <p>Reverse-engineered the target's internal memory layout using AOB pattern scanning to derive and persist struct offsets across updates. Embedded Lua 5.4 with a custom C binding layer and a typed Instance API that mirrors the target's internal object model, letting scripts interact with live process state at a high level.</p>
+
+    <p>Implemented a network event inspector using a background thread and in-process IPC. The SDL2/Nuklear GUI ships a script editor, live output console, offset diffing view, and theme/font persistence backed by a custom binary file format (SFPL). Multi-threaded architecture uses Win32 threads and pthreads with a critical section-guarded Lua state.</p>
+
+    <p>Attached below is a photo of the app, featuring the execution tab. The interface of the app can be customized freely to the user's preference from within the Settings tab.</p>
+  </div>
+
+  <img class="project-screenshot" src="/assets/main/projects/vantage.png" alt="Vantage UI" />
+</body>
+</html>

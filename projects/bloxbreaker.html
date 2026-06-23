@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BloxBreaker | Jayden Ferrara</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    body { max-width: 700px; margin: 0 auto; padding: 3.5rem 2rem; }
+  </style>
+</head>
+<body>
+  <a href="../" class="detail-back">← back</a>
+
+  <h1 class="page-headline">BloxBreaker</h1>
+
+  <div class="detail-meta">
+    <span>2025</span>
+    <div class="tag-list">
+      <span class="tag">lua</span>
+      <span class="tag">fuzzing</span>
+      <span class="tag">roblox</span>
+      <span class="tag">security</span>
+    </div>
+  </div>
+
+  <div class="detail-body">
+    <p>An automated fuzzing tool written in Lua that stress-tests the Roblox game engine by feeding invalid and extreme inputs to every part of its API. Built to run inside the Roblox environment itself, BloxBreaker targets crashes, unexpected behaviors, and security-relevant edge cases that normal gameplay would never trigger.</p>
+
+    <p>On startup, the tool fetches Roblox's complete API reference (a catalog of every class, property, and function the engine exposes) and systematically works through all of them. A curated exclusion list skips operations that would cause obvious harm, such as deleting objects or kicking players. For everything else, the fuzzer fires the most hostile inputs it can construct: NaN and infinity for numeric fields, strings padded to nearly a million null characters, malformed URLs, and broken instances of every Roblox-specific data types: Vector3, CFrame, Color3, and more. Each call runs in a sandboxed pcall so a single failure never halts the sweep; anything producing an unusual result is logged for review.</p>
+
+    <p>The result is a broad, automated pass over the entire engine surface in a single run. Rather than hunting for edge cases manually, BloxBreaker gives a developer or security researcher a fast way to surface which parts of the API behave unexpectedly under pressure, making it useful for both engine stability testing and vulnerability discovery.</p>
+  </div>
+</body>
+</html>
